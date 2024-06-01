@@ -6,9 +6,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class TestController {
 
-    @GetMapping("/login")
-    public String getPageLogin(){
-        return "login";
+    @GetMapping("/admin")
+    public String getPageAdmin(){
+        return "admin";
     }
 
 }

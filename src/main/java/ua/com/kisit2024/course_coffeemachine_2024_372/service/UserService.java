@@ -1,6 +1,9 @@
 package ua.com.kisit2024.course_coffeemachine_2024_372.service;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import ua.com.kisit2024.course_coffeemachine_2024_372.entity.Users;
 import ua.com.kisit2024.course_coffeemachine_2024_372.repository.UsersRepository;
@@ -9,7 +12,7 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
-public class UserService {
+public class UserService implements UserDetailsService {
 
     private final UsersRepository usersRepository;
 
@@ -33,4 +36,15 @@ public class UserService {
         return usersRepository.findById(id).get();
     }
 
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+
+        Users user = usersRepository.findByUsername(username);
+
+        if(user==null){
+            throw new UsernameNotFoundException("Not found!");
+        }
+
+        return user;
+    }
 }

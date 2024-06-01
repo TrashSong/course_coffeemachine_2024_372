@@ -4,6 +4,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -21,6 +22,11 @@ import java.util.Collections;
 public class UserController {
 
     private final UserService userService;
+
+    @GetMapping("/login")
+    public String getPageLogin(){
+        return "login";
+    }
 
     @GetMapping("/registration")
     public String getPageRegistration(Model model){
@@ -44,6 +50,8 @@ public class UserController {
         }
 
         user.setRolesset(Collections.singleton(new Roles(1L, "ROLE_User")));
+
+        user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
 
         // User (+id) = save User to DB
         Users user1 = userService.saveNewUserToDB(user);

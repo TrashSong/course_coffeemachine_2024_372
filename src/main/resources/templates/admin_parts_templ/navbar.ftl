@@ -6,13 +6,8 @@
                 <input class="form-control me-2" name="search" type="search" placeholder="Search" aria-label="Search">
                 <button class="btn btn-outline-success" type="submit">Search</button>
             </form>
-
             <form method="get" action="/cart">
                 <button class="btn btn-outline-success me-2" type="submit"><i class="bi bi-bag-check"></i></button>
-            </form>
-
-            <form method="get" action="/login">
-                <button class="btn btn-outline-success me-2" type="submit"><i class="bi bi-box-arrow-in-right"></i></button>
             </form>
         </div>
     </nav>
