@@ -55,7 +55,9 @@ public class WebSecurityConfig {
                                 .permitAll()
                                 .requestMatchers("/user","/order","/buy")
                                 .hasRole("User")
-                                .requestMatchers("/admin","/admin-users","/update-users","/update-roles-users")
+                                .requestMatchers("/admin","/admin-users","/update-users",
+                                        "/update-roles-users","/drink-admin", "/saveNewDrink",
+                                        "/updateDrink","/deleteDrink")
                                 .hasRole("Admin")
                                 .anyRequest()
                                 .authenticated()

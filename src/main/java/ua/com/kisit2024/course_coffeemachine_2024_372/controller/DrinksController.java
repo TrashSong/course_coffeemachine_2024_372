@@ -24,7 +24,7 @@ public class DrinksController {
     @GetMapping("/search")
     public String getPageSearch(@RequestParam() String search,
                                 Model model) {
-        model.addAttribute("drinksByName",drinksService.getProductsByName(search));
+        model.addAttribute("drinksByName",drinksService.getDrinksByName(search));
 
         return "search";
     }

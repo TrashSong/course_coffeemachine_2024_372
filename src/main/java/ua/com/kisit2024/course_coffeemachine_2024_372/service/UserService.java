@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import ua.com.kisit2024.course_coffeemachine_2024_372.entity.Users;
 import ua.com.kisit2024.course_coffeemachine_2024_372.repository.UsersRepository;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -46,5 +47,17 @@ public class UserService implements UserDetailsService {
         }
 
         return user;
+    }
+
+    public List<Users> getAllUsers(){
+        return usersRepository.findAll();
+    }
+
+    public void updateUser(String password, String username, Long id){
+        usersRepository.updateUserById(password, username, id);
+    }
+
+    public void addNewRoleToUser(Long userId, Long roleId){
+        usersRepository.updateRoleByUserId(userId, roleId);
     }
 }

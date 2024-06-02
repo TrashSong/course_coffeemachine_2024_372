@@ -3,6 +3,8 @@ package ua.com.kisit2024.course_coffeemachine_2024_372.controller;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -120,7 +122,9 @@ public class CartController {
         model.addAttribute("total", cart.getTotalValue());
         model.addAttribute("el", cart.getSumElInCart());
 
-        Long userId = (Long) session.getAttribute("user");
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        Users users = (Users) userService.loadUserByUsername(auth.getName());
+        Long userId = users.getId();
 
         return "order";
     }
@@ -139,7 +143,9 @@ public class CartController {
             return "redirect:/";
         }
 
-        Long userId = (Long) session.getAttribute("user");
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        Users users = (Users) userService.loadUserByUsername(auth.getName());
+        Long userId = users.getId();
 
         if (userId!=null){
 

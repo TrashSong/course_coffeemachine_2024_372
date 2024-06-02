@@ -11,10 +11,4 @@ public class IngredientsHasDrinkController {
     public IngredientsHasDrinkController (IngredientsHasDrinkService ingredientsHasDrinkService) {
         this.ingredientsHasDrinkService = ingredientsHasDrinkService;
     }
-
-//    @GetMapping("/")
-//    public String getPageHome(Model model){
-//        model.addAttribute("ingre_drink_menu", ingredientsHasDrinkService.findAllIngredientsHasDrink());
-//        return "index2";
-//    }
 }

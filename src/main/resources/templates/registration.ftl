@@ -27,7 +27,7 @@
         <@spring.formInput "users.lastName"/><br>
         <@spring.showErrors "<br>"/><br>
 
-        <button type="submit">Add</button>
+        <button class="btn btn-success" type="submit">Sign up</button>
 
     </form>
     </div>

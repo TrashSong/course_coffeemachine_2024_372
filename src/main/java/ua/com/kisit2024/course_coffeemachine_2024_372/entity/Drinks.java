@@ -29,4 +29,10 @@ public class Drinks {
     @OneToMany(mappedBy = "_drink")
     private List<IngredientsHasDrink> drinksList;
 
+    public Drinks(String name, String description, BigDecimal price, String image) {
+        this.name = name;
+        this.description = description;
+        this.price = price;
+        this.image = image;
+    }
 }
