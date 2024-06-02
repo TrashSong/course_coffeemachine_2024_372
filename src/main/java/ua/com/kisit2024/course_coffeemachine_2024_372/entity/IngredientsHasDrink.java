@@ -36,4 +36,9 @@ public class IngredientsHasDrink {
     @OneToMany(mappedBy = "_ingredientsHasDrink")
     private List<DrinkHasOrder> ingredientsHasDrinkList;
 
+    public IngredientsHasDrink(Drinks _drink, Sizes _size, Ingredients _ingredient) {
+        this._drink = _drink;
+        this._size = _size;
+        this._ingredient = _ingredient;
+    }
 }

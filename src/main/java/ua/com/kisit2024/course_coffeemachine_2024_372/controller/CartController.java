@@ -12,15 +12,16 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import ua.com.kisit2024.course_coffeemachine_2024_372.bl.Cart;
 import ua.com.kisit2024.course_coffeemachine_2024_372.bl.ItemCart;
-import ua.com.kisit2024.course_coffeemachine_2024_372.entity.DrinkHasOrder;
-import ua.com.kisit2024.course_coffeemachine_2024_372.entity.IngredientsHasDrink;
-import ua.com.kisit2024.course_coffeemachine_2024_372.entity.Order;
-import ua.com.kisit2024.course_coffeemachine_2024_372.entity.Users;
+import ua.com.kisit2024.course_coffeemachine_2024_372.entity.*;
 import ua.com.kisit2024.course_coffeemachine_2024_372.repository.DrinkHasOrderRepository;
+import ua.com.kisit2024.course_coffeemachine_2024_372.repository.IngredientsRepository;
 import ua.com.kisit2024.course_coffeemachine_2024_372.service.OrderService;
 import ua.com.kisit2024.course_coffeemachine_2024_372.service.UserService;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import java.util.stream.Stream;
 
 @Controller
 @RequiredArgsConstructor
@@ -29,21 +30,40 @@ public class CartController {
     private final UserService userService;
     private final OrderService orderService;
     private final DrinkHasOrderRepository drinkHasOrderRepository;
+    private final IngredientsRepository ingredientsRepository;
 
     @PostMapping("/addToCart")
-    public String saveNewItemToCart(@RequestParam(name = "id") IngredientsHasDrink ingredientsHasDrink,
+    public String saveNewItemToCart(@RequestParam(name = "id") Drinks drinks,
                                     @RequestParam(name = "quantity") int quantity,
+                                    @RequestParam(name = "v1") String[] array,
+                                    @RequestParam(name = "v2") String size,
                                     HttpServletRequest request) {
 
         HttpSession session = request.getSession();
 
         Cart cart = (Cart) session.getAttribute("cart");
 
+        List<Ingredients> ingredients = new ArrayList<>();
+                Stream.of(array).forEach(el-> {
+                    if(!el.equals("0")) ingredients.add(ingredientsRepository.findById(Long.valueOf(el)).get());
+                }
+                );
+        System.out.println(ingredients);
         if (cart == null) {
             cart = new Cart();
         }
 
-        cart.addNewItemToCart(ingredientsHasDrink, quantity);
+        List<IngredientsHasDrink> ingredientsHasDrinkList = new ArrayList<>();
+        for (Ingredients el: ingredients
+             ) {
+            ingredientsHasDrinkList.add(new IngredientsHasDrink(drinks, new Sizes(), el));
+        }
+
+        for (IngredientsHasDrink el: ingredientsHasDrinkList
+             ) {
+            cart.addNewItemToCart(el, quantity);
+        }
+
         session.setAttribute("cart", cart);
 
         return "redirect:/cart";

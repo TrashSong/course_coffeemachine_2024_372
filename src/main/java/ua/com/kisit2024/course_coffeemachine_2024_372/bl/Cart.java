@@ -25,12 +25,12 @@ public class Cart {
 
         boolean logic = true;
 
-        for(ItemCart el: cart){
-            if(el.getIngredientsHasDrink().getId()==ingredientsHasDrink.getId()){
-                logic = false;
-                el.setQuantity(el.getQuantity()+quantity);
-            }
-        }
+//        for(ItemCart el: cart){
+//            if(el.getIngredientsHasDrink().getId()==ingredientsHasDrink.getId()){
+//                logic = false;
+//                el.setQuantity(el.getQuantity()+quantity);
+//            }
+//        }
 
         if(logic) cart.add(new ItemCart(ingredientsHasDrink, quantity));
 
