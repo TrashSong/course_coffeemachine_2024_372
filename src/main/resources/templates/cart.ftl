@@ -7,7 +7,7 @@
         <th>id</th>
         <th>name</th>
         <th>ingredient</th>
-        <th>update</th>
+<#--        <th>update</th>-->
 <#--        <th>delete</th>-->
         </tbody>
         <tbody>
@@ -25,7 +25,7 @@
 <#--                        <td><input type="number" value="${item.quantity}" name="quantity" min="0" step="1"></td>-->
 <#--                        <td>${item.ingredientsHasDrink.price}</td>-->
 <#--                        <td>${item.ingredientsHasDrink.price * item.quantity}</td>-->
-                        <td><button type="submit">Update</button></td>
+<#--                        <td><button type="submit">Update</button></td>-->
                     </form>
 
 <#--                    <form action="/deleteItemFromCart" method="post">-->
@@ -48,7 +48,7 @@
         <button class="btn btn-success" type="submit">Delete all</button>
     </form>
 
-    <form method="get" action="/login">
+    <form method="get" action="/order">
         <button type="submit">Order</button>
     </form>
 

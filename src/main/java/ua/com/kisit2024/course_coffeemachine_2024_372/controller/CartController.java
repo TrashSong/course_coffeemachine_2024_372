@@ -49,6 +49,7 @@ public class CartController {
                 }
                 );
         System.out.println(ingredients);
+
         if (cart == null) {
             cart = new Cart();
         }

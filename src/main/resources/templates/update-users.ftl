@@ -33,19 +33,13 @@
                         </#if>
                     </td>
                     <td>
-
                        <input type="submit" value="update">
                     </td>
                    </form>
                 </tr>
             </#list>
         </#if>
-
         </tbody>
-
-
     </table>
-
-
 
 </@p.pages>

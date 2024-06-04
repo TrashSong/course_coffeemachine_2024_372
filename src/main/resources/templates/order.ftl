@@ -9,9 +9,7 @@
         <tr>
             <th>image</th>
             <th>name</th>
-            <th>quantity</th>
             <th>price</th>
-            <th>value</th>
         </tr>
         </thead>
         <tbody>
@@ -32,7 +30,7 @@
     </table>
 
     <p> Варість замовлення : ${total} </p>
-    <p> Кількість асотиментних позицій у замовленні: ${el}</p>
+    <p> Кількість асортиментних позицій у замовленні: ${el}</p>
 
 
     <form action="/buy" method="post">
